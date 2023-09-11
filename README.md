@@ -70,3 +70,17 @@ python address_book.py
 ### Exiting the Application
 
 - Choose option 5 from the menu to exit the application.
+
+## Build and run as docker image
+
+### Build Command
+
+```bash
+docker build . -t program_name_here
+```
+
+### Running the Image
+
+```bash
+docker run -it program_name_here
+```
