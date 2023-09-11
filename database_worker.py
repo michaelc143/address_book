@@ -1,6 +1,6 @@
 import sqlite3
 
-# Step 3: Create Database Connection
+# Create connection to database
 def create_connection(db_file):
     try:
         conn = sqlite3.connect(db_file)
@@ -9,7 +9,7 @@ def create_connection(db_file):
         print(e)
     return None
 
-# Step 4: Define Database Schema
+# Crate table and define schema
 def create_table(conn):
     try:
         cursor = conn.cursor()
@@ -24,7 +24,7 @@ def create_table(conn):
     except sqlite3.Error as e:
         print(e)
 
-# Step 5: Perform CRUD Operations
+# CRUD OPS
 def insert_contact(conn, name, email):
     try:
         cursor = conn.cursor()
@@ -59,7 +59,7 @@ def delete_contact(conn, contact_id):
     except sqlite3.Error as e:
         print(e)
 
-# Step 6: Main Program
+# Main Program
 if __name__ == "__main__":
     database_file = 'py_data.db'
     conn = create_connection(database_file)
