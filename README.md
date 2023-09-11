@@ -13,7 +13,9 @@ The Address Book Application is a simple Python program that allows you to manag
   - [Updating a Contact](#updating-a-contact)
   - [Deleting a Contact](#deleting-a-contact)
   - [Exiting the Application](#exiting-the-application)
-
+- [Build and Run Image](#build-and-run-as-docker-image)
+  - [Build](#build-command)
+  - [Run](#running-the-image)
 ## Getting Started
 
 ### Prerequisites
