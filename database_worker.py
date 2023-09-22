@@ -17,7 +17,8 @@ def create_table(conn):
             CREATE TABLE IF NOT EXISTS contacts (
                 id INTEGER PRIMARY KEY,
                 name TEXT NOT NULL,
-                email TEXT NOT NULL
+                email TEXT NOT NULL,
+                phone TEXT NOT NULL
             )
         ''')
         conn.commit()
@@ -25,10 +26,10 @@ def create_table(conn):
         print(e)
 
 # CRUD OPS
-def insert_contact(conn, name, email):
+def insert_contact(conn, name, email, phone):
     try:
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO contacts (name, email) VALUES (?, ?)', (name, email))
+        cursor.execute('INSERT INTO contacts (name, email, phone) VALUES (?, ?, ?)', (name, email, phone))
         conn.commit()
     except sqlite3.Error as e:
         print(e)
@@ -43,10 +44,10 @@ def get_contacts(conn):
         print(e)
     return []
 
-def update_contact(conn, contact_id, name, email):
+def update_contact(conn, contact_id, name, email, phone):
     try:
         cursor = conn.cursor()
-        cursor.execute('UPDATE contacts SET name = ?, email = ? WHERE id = ?', (name, email, contact_id))
+        cursor.execute('UPDATE contacts SET name = ?, email = ?, phone = ? WHERE id = ?', (name, email, phone, contact_id))
         conn.commit()
     except sqlite3.Error as e:
         print(e)
@@ -79,17 +80,19 @@ if __name__ == "__main__":
             if choice == '1':
                 name = input("Enter name: ")
                 email = input("Enter email: ")
-                insert_contact(conn, name, email)
+                phone = input("Enter phone: ")
+                insert_contact(conn, name, email, phone)
                 print("Contact added successfully.")
             elif choice == '2':
                 contacts = get_contacts(conn)
                 for contact in contacts:
-                    print(f"ID: {contact[0]}, Name: {contact[1]}, Email: {contact[2]}")
+                    print(f"ID: {contact[0]}, Name: {contact[1]}, Email: {contact[2]}, Phone: {contact[3]}")
             elif choice == '3':
                 contact_id = input("Enter contact ID to update: ")
                 name = input("Enter updated name: ")
                 email = input("Enter updated email: ")
-                update_contact(conn, contact_id, name, email)
+                phone = input("Enter updated phone: ")
+                update_contact(conn, contact_id, name, email, phone)
                 print("Contact updated successfully.")
             elif choice == '4':
                 contact_id = input("Enter contact ID to delete: ")
